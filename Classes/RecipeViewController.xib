@@ -42,7 +42,7 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="1016848578">
+					<object class="IBUIView" id="908826477">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{10, 10}, {300, 394}}</string>
@@ -53,7 +53,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="812507373">
+					<object class="IBUIImageView" id="635128400">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{10, 10}, {300, 394}}</string>
@@ -99,6 +99,10 @@
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="45579494">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">zomg_shiny.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="197476699">
@@ -351,7 +355,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">thumbnailView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="812507373"/>
+						<reference key="destination" ref="635128400"/>
 					</object>
 					<int key="connectionID">30</int>
 				</object>
@@ -359,7 +363,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">thumbnailBg</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1016848578"/>
+						<reference key="destination" ref="908826477"/>
 					</object>
 					<int key="connectionID">32</int>
 				</object>
@@ -383,8 +387,8 @@
 							<reference ref="197476699"/>
 							<reference ref="924275457"/>
 							<reference ref="221327522"/>
-							<reference ref="812507373"/>
-							<reference ref="1016848578"/>
+							<reference ref="635128400"/>
+							<reference ref="908826477"/>
 							<reference ref="1060620282"/>
 							<reference ref="980421758"/>
 						</object>
@@ -452,13 +456,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="812507373"/>
+						<reference key="object" ref="635128400"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Thumbnail View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
-						<reference key="object" ref="1016848578"/>
+						<reference key="object" ref="908826477"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Thumbnail Bg</string>
 					</object>
@@ -879,6 +883,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../wtfrecipes.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">zomg_shiny.png</string>
+			<string key="NS.object.0">{460, 460}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>
 </archive>

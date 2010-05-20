@@ -21,15 +21,15 @@ const int MAX_PAGE = 31;
 - (void)viewDidLoad {
   CALayer *thumbnailBgLayer = [self.thumbnailBg layer];
   thumbnailBgLayer.masksToBounds = YES;
-  thumbnailBgLayer.cornerRadius = 8.0;
+  thumbnailBgLayer.cornerRadius = 9.0;
   CALayer *thumbnailViewLayer = [self.thumbnailView layer];
   thumbnailViewLayer.masksToBounds = YES;
-  thumbnailViewLayer.cornerRadius = 8.0;
+  thumbnailViewLayer.cornerRadius = 9.0;
   CALayer *ohSweetButtonLayer = [self.ohSweetButton layer];
   ohSweetButtonLayer.masksToBounds = YES;
   ohSweetButtonLayer.cornerRadius = 8.0;
   ohSweetButtonLayer.borderWidth = 1.0;
-  ohSweetButtonLayer.borderColor = [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1] CGColor];
+  ohSweetButtonLayer.borderColor = [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.25] CGColor];
   payloadSpinner.hidden = YES;
   [super viewDidLoad];
   [self loadMoar];
