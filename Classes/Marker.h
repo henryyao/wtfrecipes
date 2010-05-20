@@ -1,0 +1,26 @@
+//
+//  Marker.h
+//  wtfrecipes
+//
+//  Created by Henry Yao on 5/20/10.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface Marker : NSObject {
+  NSString *markerType;
+  NSString *markerTitle;
+  NSString *markerText;
+  int stepNumber;
+}
+
+@property (nonatomic, retain) NSString *markerType;
+@property (nonatomic, retain) NSString *markerTitle;
+@property (nonatomic, retain) NSString *markerText;
+@property (nonatomic) int stepNumber;
+
+- (BOOL)isaStep;
+
+@end

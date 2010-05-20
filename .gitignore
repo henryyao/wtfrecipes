@@ -1,0 +1,4 @@
+build/
+.DS_Store
+wtfrecipes.xcodeproj/*.mode1v3
+wtfrecipes.xcodeproj/*.pbxuser

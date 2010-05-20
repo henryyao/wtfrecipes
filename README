@@ -1,0 +1,6 @@
+An iPhone app that displays Howcast Food & Drinks Guides.
+
+Uses:
+
+Howcast API: http://groups.google.com/group/howcast-developers/web/api-documentation
+TouchXML: http://code.google.com/p/touchcode/wiki/TouchXML
