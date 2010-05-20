@@ -13,7 +13,7 @@
 
 
 @implementation RecipeViewController
-@synthesize food, currentVideo, videos, videoParser, videosParser, detailViewController, toolbar, loadingView, ohSweetButton, page;
+@synthesize food, payload, payloadSpinner, currentVideo, videos, videoParser, videosParser, detailViewController, toolbar, loadingView, ohSweetButton, page;
 
 - (void)viewDidLoad {
   CALayer *ohSweetButtonLayer = [self.ohSweetButton layer];
@@ -46,6 +46,7 @@
 
 - (void)dealloc {
   [videos release];
+  [videoParser release];
   [videosParser release];
   [super dealloc];
 }
@@ -73,9 +74,13 @@
   if([videos count] > 0) {
     self.currentVideo = ((Video *)[videos objectAtIndex:0]);
     [videos removeObjectAtIndex:0];
+    payload.text = @"(      )";
+    payloadSpinner.hidden = NO;
+    [self loadDetailsForCurrentVideoAndPresent:NO];
     if(([self.currentVideo.videoTitle rangeOfString:@"Quick Tips"].location != 0) &&
-       ([self.currentVideo.videoTitle rangeOfString:@"How Do You How"].location != 0))
+       ([self.currentVideo.videoTitle rangeOfString:@"How Do You How"].location != 0)) {
       food.text = currentVideo.videoTitle;
+    }
     else
       [self setNextFood];
   }
@@ -85,13 +90,23 @@
 - (void)showDetails {
   detailViewController.video = currentVideo;
   detailViewController.title = currentVideo.videoTitle;
+  NSLog(@"%i, %i", [currentVideo.markers count], [currentVideo.ingredients count]);
   if(([currentVideo.markers count]==0) || ([currentVideo.ingredients count]==0)) {
-    [self.view bringSubviewToFront:toolbar];
-    videoParser.video = currentVideo;
     loadingView.hidden = NO;
-    [videoParser parseVideo:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.howcast.com/videos/%@.xml", currentVideo.videoId]]];
+    [self.view bringSubviewToFront:toolbar];
+    [self loadDetailsForCurrentVideoAndPresent:YES];
   }
-  else [self presentDetailViewController];
+  else {
+    detailViewController.tableView.contentOffset = CGPointZero;
+    [detailViewController.tableView reloadData];
+    [self presentDetailViewController];
+  }
+}
+
+- (void)loadDetailsForCurrentVideoAndPresent:(BOOL)present {
+  shouldPresent = present;
+  videoParser.video = currentVideo;
+  [videoParser parseVideo:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.howcast.com/videos/%@.xml", currentVideo.videoId]]];
 }
 
 - (void)presentDetailViewController {
@@ -132,10 +147,12 @@
 
 - (void)videoParser:(VideoParser *)parser didParse:(Video *)video {
   loadingView.hidden = YES;
-  currentVideo = video;
+  self.currentVideo = video;
+  payloadSpinner.hidden = YES;
+  payload.text = [NSString stringWithFormat:@"( %i Ingredients, %i Steps )", [video.ingredients count], [video.markers count]];
   detailViewController.tableView.contentOffset = CGPointZero;
   [detailViewController.tableView reloadData];
-  [self presentDetailViewController];
+  if(shouldPresent) [self presentDetailViewController];
 }
 
 

@@ -18,9 +18,10 @@
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   self.buffer = [NSMutableData data];
   done = NO;
-  [[NSURLCache sharedURLCache] removeAllCachedResponses];
+  //[[NSURLCache sharedURLCache] removeAllCachedResponses];
   NSURLRequest *req = [NSURLRequest requestWithURL:url];
   conn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
+  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
   if (conn != nil) {
     do {
       [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
@@ -32,6 +33,7 @@
 #pragma mark NSURLConnection Delegate methods
 // Forward errors to the delegate.
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"Unable to connect to the Internet, perhaps try again later." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
   [alert show];
   [alert release];
@@ -47,6 +49,7 @@
 
 // When connection is finished loading--can start parsing.
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
   self.conn = nil;
   // Set done to YES to exit the run loop.
   done = YES; 

@@ -14,6 +14,8 @@
 
 @interface RecipeViewController : UIViewController <VideosParserDelegate, VideoParserDelegate> {
   UILabel *food;
+  UILabel *payload;
+  UIActivityIndicatorView *payloadSpinner;
   Video *currentVideo;
   NSMutableArray *videos;
   VideoParser *videoParser;
@@ -23,9 +25,12 @@
   UIView *loadingView;
   UIButton *ohSweetButton;
   int page;
+  BOOL shouldPresent;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *food;
+@property (nonatomic, retain) IBOutlet UILabel *payload;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *payloadSpinner;
 @property (nonatomic, retain) Video *currentVideo;
 @property (nonatomic, retain) NSMutableArray *videos;
 @property (nonatomic, retain) VideoParser *videoParser;
@@ -42,6 +47,7 @@
 - (void)loadMoar;
 - (void)setNextFood;
 - (void)showDetails;
+- (void)loadDetailsForCurrentVideoAndPresent:(BOOL)present;
 - (void)presentDetailViewController;
 
 @end
