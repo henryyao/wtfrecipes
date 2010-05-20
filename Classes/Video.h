@@ -15,6 +15,8 @@
   NSMutableArray *markers;
   NSMutableArray *ingredients;
   int totalSteps;
+  NSString *thumbnailURL;
+  UIImage *thumbnail;
 }
 
 @property (nonatomic, retain) NSString *videoTitle;
@@ -22,5 +24,7 @@
 @property (nonatomic, retain) NSMutableArray *markers;
 @property (nonatomic, retain) NSMutableArray *ingredients;
 @property (nonatomic) int totalSteps;
+@property (nonatomic, retain) NSString *thumbnailURL;
+@property (nonatomic, retain) UIImage *thumbnail;
 
 @end

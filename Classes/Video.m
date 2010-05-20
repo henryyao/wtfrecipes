@@ -11,7 +11,7 @@
 
 @implementation Video
 
-@synthesize videoTitle, videoId, markers, ingredients, totalSteps;
+@synthesize videoTitle, videoId, markers, ingredients, totalSteps, thumbnail, thumbnailURL;
 
 - (id)init {
   self.markers = [NSMutableArray array];

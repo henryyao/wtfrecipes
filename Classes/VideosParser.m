@@ -25,6 +25,7 @@
   
   video.videoTitle = [Utils stringValueFromElement:videoData named:@"title"];
   video.videoId = [Utils stringValueFromElement:videoData named:@"id"];
+  video.thumbnailURL = [Utils stringValueFromElement:videoData named:@"thumbnail-url"];
 
   return video;
 }

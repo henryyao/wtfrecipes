@@ -10,19 +10,23 @@
 #import "Video.h"
 #import "VideoParser.h"
 #import "VideosParser.h"
+#import "IconDownloader.h"
 #import "RecipeDetailViewController.h"
 
 const int CATEGORY_ID;
 const int MAX_PAGE;
 
-@interface RecipeViewController : UIViewController <VideosParserDelegate, VideoParserDelegate> {
+@interface RecipeViewController : UIViewController <VideosParserDelegate, VideoParserDelegate, IconDownloaderDelegate> {
   UILabel *food;
   UILabel *payload;
+  UIImageView *thumbnailView;
+  UIView *thumbnailBg;
   UIActivityIndicatorView *payloadSpinner;
   Video *currentVideo;
   NSMutableArray *videos;
   VideoParser *videoParser;
   VideosParser *videosParser;
+  IconDownloader *iconDownloader;
   RecipeDetailViewController *detailViewController;
   UIToolbar *toolbar;
   UIBarButtonItem *fuckThatButton; 
@@ -34,11 +38,14 @@ const int MAX_PAGE;
 
 @property (nonatomic, retain) IBOutlet UILabel *food;
 @property (nonatomic, retain) IBOutlet UILabel *payload;
+@property (nonatomic, retain) IBOutlet UIImageView *thumbnailView;
+@property (nonatomic, retain) IBOutlet UIView *thumbnailBg;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *payloadSpinner;
 @property (nonatomic, retain) Video *currentVideo;
 @property (nonatomic, retain) NSMutableArray *videos;
 @property (nonatomic, retain) VideoParser *videoParser;
 @property (nonatomic, retain) VideosParser *videosParser;
+@property (nonatomic, retain) IconDownloader *iconDownloader;
 @property (nonatomic, retain) IBOutlet RecipeDetailViewController *detailViewController;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *fuckThatButton; 

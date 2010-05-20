@@ -37,6 +37,7 @@
 		BA628D5D11A5BAC600FEA93C /* VideoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BA628D5C11A5BAC600FEA93C /* VideoParser.m */; };
 		BA628DF711A5C27500FEA93C /* Marker.m in Sources */ = {isa = PBXBuildFile; fileRef = BA628DF611A5C27500FEA93C /* Marker.m */; };
 		BA628F2311A5D31F00FEA93C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA628F2211A5D31F00FEA93C /* QuartzCore.framework */; };
+		BA6290C811A5EF6E00FEA93C /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6290C711A5EF6E00FEA93C /* IconDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,8 @@
 		BA628DF511A5C27500FEA93C /* Marker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marker.h; sourceTree = "<group>"; };
 		BA628DF611A5C27500FEA93C /* Marker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Marker.m; sourceTree = "<group>"; };
 		BA628F2211A5D31F00FEA93C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BA6290C611A5EF6E00FEA93C /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		BA6290C711A5EF6E00FEA93C /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +264,8 @@
 		BA628C4F11A5AD0600FEA93C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BA6290C611A5EF6E00FEA93C /* IconDownloader.h */,
+				BA6290C711A5EF6E00FEA93C /* IconDownloader.m */,
 				BA628D4611A5B9D100FEA93C /* ToolbarNavigationController.h */,
 				BA628D4711A5B9D100FEA93C /* ToolbarNavigationController.m */,
 				BA628C5011A5AD1600FEA93C /* XMLDownloader.h */,
@@ -348,6 +353,7 @@
 				BA628D4811A5B9D100FEA93C /* ToolbarNavigationController.m in Sources */,
 				BA628D5D11A5BAC600FEA93C /* VideoParser.m in Sources */,
 				BA628DF711A5C27500FEA93C /* Marker.m in Sources */,
+				BA6290C811A5EF6E00FEA93C /* IconDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

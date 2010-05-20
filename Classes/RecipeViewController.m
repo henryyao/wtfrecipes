@@ -16,9 +16,15 @@ const int MAX_PAGE = 31;
 
 
 @implementation RecipeViewController
-@synthesize food, payload, payloadSpinner, currentVideo, videos, videoParser, videosParser, detailViewController, toolbar, fuckThatButton, loadingView, ohSweetButton, page;
+@synthesize food, payload, thumbnailBg, thumbnailView, payloadSpinner, currentVideo, videos, videoParser, videosParser, iconDownloader, detailViewController, toolbar, fuckThatButton, loadingView, ohSweetButton, page;
 
 - (void)viewDidLoad {
+  CALayer *thumbnailBgLayer = [self.thumbnailBg layer];
+  thumbnailBgLayer.masksToBounds = YES;
+  thumbnailBgLayer.cornerRadius = 8.0;
+  CALayer *thumbnailViewLayer = [self.thumbnailView layer];
+  thumbnailViewLayer.masksToBounds = YES;
+  thumbnailViewLayer.cornerRadius = 8.0;
   CALayer *ohSweetButtonLayer = [self.ohSweetButton layer];
   ohSweetButtonLayer.masksToBounds = YES;
   ohSweetButtonLayer.cornerRadius = 8.0;
@@ -70,6 +76,10 @@ const int MAX_PAGE = 31;
     self.videosParser = [[VideosParser alloc] init];
     videosParser.delegate = self;
   }
+  if(iconDownloader==nil) {
+    self.iconDownloader = [[IconDownloader alloc] init];
+    iconDownloader.delegate = self;
+  }
   if(videos==nil) self.videos = [NSMutableArray array];
   [videosParser parseVideos:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.howcast.com/videos/most_recent/howcast_studios/%i-Category/%i.xml?api_key=dfabb48a725bd15902fa3058e1f46dcc967d7761", CATEGORY_ID, page]]];
 }
@@ -78,12 +88,15 @@ const int MAX_PAGE = 31;
   if([videos count] > 0) {
     self.currentVideo = ((Video *)[videos objectAtIndex:0]);
     [videos removeObjectAtIndex:0];
+    thumbnailView.image = nil;
     payload.text = @"";
     payloadSpinner.hidden = NO;
-    [self loadDetailsForCurrentVideoAndPresent:NO];
     if(([self.currentVideo.videoTitle rangeOfString:@"Quick Tips"].location != 0) &&
        ([self.currentVideo.videoTitle rangeOfString:@"How Do You How"].location != 0)) {
       food.text = currentVideo.videoTitle;
+      iconDownloader.video = currentVideo;
+      [self loadDetailsForCurrentVideoAndPresent:NO];
+      [iconDownloader startDownload];
     }
     else
       [self setNextFood];
@@ -157,6 +170,16 @@ const int MAX_PAGE = 31;
   detailViewController.tableView.contentOffset = CGPointZero;
   [detailViewController.tableView reloadData];
   if(shouldPresent) [self presentDetailViewController];
+}
+
+#pragma mark IconDownloaderDelegate methods
+- (void)videoThumbnailDidLoad:(Video *)video {
+  self.thumbnailView.alpha = 0;
+  self.thumbnailView.image = video.thumbnail;
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.5];
+  self.thumbnailView.alpha = 1.0;
+  [UIView commitAnimations];
 }
 
 
