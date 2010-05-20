@@ -96,6 +96,7 @@ const int MAX_PAGE = 31;
       food.text = currentVideo.videoTitle;
       iconDownloader.video = currentVideo;
       [self loadDetailsForCurrentVideoAndPresent:NO];
+      [iconDownloader cancelDownload];
       [iconDownloader startDownload];
     }
     else
