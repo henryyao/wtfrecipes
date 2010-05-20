@@ -12,6 +12,9 @@
 #import "VideosParser.h"
 #import "RecipeDetailViewController.h"
 
+const int CATEGORY_ID;
+const int MAX_PAGE;
+
 @interface RecipeViewController : UIViewController <VideosParserDelegate, VideoParserDelegate> {
   UILabel *food;
   UILabel *payload;
@@ -22,6 +25,7 @@
   VideosParser *videosParser;
   RecipeDetailViewController *detailViewController;
   UIToolbar *toolbar;
+  UIBarButtonItem *fuckThatButton; 
   UIView *loadingView;
   UIButton *ohSweetButton;
   int page;
@@ -37,6 +41,7 @@
 @property (nonatomic, retain) VideosParser *videosParser;
 @property (nonatomic, retain) IBOutlet RecipeDetailViewController *detailViewController;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *fuckThatButton; 
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
 @property (nonatomic, retain) IBOutlet UIButton *ohSweetButton;
 @property (nonatomic) int page;

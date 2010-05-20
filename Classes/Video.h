@@ -14,11 +14,13 @@
   NSString *videoId;
   NSMutableArray *markers;
   NSMutableArray *ingredients;
+  int totalSteps;
 }
 
 @property (nonatomic, retain) NSString *videoTitle;
 @property (nonatomic, retain) NSString *videoId;
 @property (nonatomic, retain) NSMutableArray *markers;
 @property (nonatomic, retain) NSMutableArray *ingredients;
+@property (nonatomic) int totalSteps;
 
 @end

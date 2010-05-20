@@ -62,6 +62,7 @@
       if([m isaStep]) m.stepNumber = stepNumber, stepNumber++;
       [video.markers addObject:m];
     }
+    video.totalSteps = stepNumber-1;
   }
   else {
     NSLog(@"Error: %@", xmlError);

@@ -11,9 +11,12 @@
 #import "Video.h"
 #import "ToolbarNavigationController.h"
 
+const int CATEGORY_ID = 355;
+const int MAX_PAGE = 31;
+
 
 @implementation RecipeViewController
-@synthesize food, payload, payloadSpinner, currentVideo, videos, videoParser, videosParser, detailViewController, toolbar, loadingView, ohSweetButton, page;
+@synthesize food, payload, payloadSpinner, currentVideo, videos, videoParser, videosParser, detailViewController, toolbar, fuckThatButton, loadingView, ohSweetButton, page;
 
 - (void)viewDidLoad {
   CALayer *ohSweetButtonLayer = [self.ohSweetButton layer];
@@ -21,6 +24,7 @@
   ohSweetButtonLayer.cornerRadius = 8.0;
   ohSweetButtonLayer.borderWidth = 1.0;
   ohSweetButtonLayer.borderColor = [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1] CGColor];
+  payloadSpinner.hidden = YES;
   [super viewDidLoad];
   [self loadMoar];
 }
@@ -57,7 +61,7 @@
   loadingView.hidden = NO;
   //page++;
   srandom(time(NULL));
-  page = (int)((random()%25))+1;
+  page = (int)((random()%MAX_PAGE))+1;
   if(videoParser==nil) {
     self.videoParser = [[VideoParser alloc] init];
     videoParser.delegate = self;
@@ -67,14 +71,14 @@
     videosParser.delegate = self;
   }
   if(videos==nil) self.videos = [NSMutableArray array];
-  [videosParser parseVideos:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.howcast.com/videos/most_recent/howcast_studios/355-Category/%i.xml?api_key=dfabb48a725bd15902fa3058e1f46dcc967d7761", page]]];
+  [videosParser parseVideos:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.howcast.com/videos/most_recent/howcast_studios/%i-Category/%i.xml?api_key=dfabb48a725bd15902fa3058e1f46dcc967d7761", CATEGORY_ID, page]]];
 }
 
 - (void)setNextFood {
   if([videos count] > 0) {
     self.currentVideo = ((Video *)[videos objectAtIndex:0]);
     [videos removeObjectAtIndex:0];
-    payload.text = @"(      )";
+    payload.text = @"";
     payloadSpinner.hidden = NO;
     [self loadDetailsForCurrentVideoAndPresent:NO];
     if(([self.currentVideo.videoTitle rangeOfString:@"Quick Tips"].location != 0) &&
@@ -142,14 +146,14 @@
 #pragma mark VideoParserDelegate methods
 - (void)videoParser:(VideoParser *)parser didFailWithError:(NSError *)error {
   loadingView.hidden = YES;
-  //FML
+  payload.text = @"Something got fucked up";
 }
 
 - (void)videoParser:(VideoParser *)parser didParse:(Video *)video {
   loadingView.hidden = YES;
   self.currentVideo = video;
   payloadSpinner.hidden = YES;
-  payload.text = [NSString stringWithFormat:@"( %i Ingredients, %i Steps )", [video.ingredients count], [video.markers count]];
+  payload.text = [NSString stringWithFormat:@"%i Ingredients, %i Steps", [video.ingredients count], video.totalSteps];
   detailViewController.tableView.contentOffset = CGPointZero;
   [detailViewController.tableView reloadData];
   if(shouldPresent) [self presentDetailViewController];
