@@ -8,6 +8,7 @@
 
 #import "RecipeDetailViewController.h"
 #import "Marker.h"
+#import "MarkerCell.h"
 
 
 @implementation RecipeDetailViewController
@@ -87,13 +88,23 @@
     if (cell == nil) 
       cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     cell.textLabel.text = [video.ingredients objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor colorWithRed:0.35 green:0.20 blue:0.12 alpha:1.0];
+    cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.93 alpha:1.0];
   }
   else {
     CellIdentifier = @"MarkerCell";  
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
-      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+      cell = [[[MarkerCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     Marker *m = (Marker *)[video.markers objectAtIndex:indexPath.row];
+    if([m.markerType isEqualToString:@"Warning"])
+      cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.81 alpha:1.0];
+    else if([m.markerType isEqualToString:@"Tip"])
+      cell.backgroundColor = [UIColor colorWithRed:0.88 green:1.0 blue:0.94 alpha:1.0];
+    else if([m.markerType isEqualToString:@"Fact"])
+      cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.95 blue:1.0 alpha:1.0];
+    else
+      cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [m isaStep] ? (m.markerTitle!=nil) ? [NSString stringWithFormat:@"%i. %@", m.stepNumber, m.markerTitle] : [NSString stringWithFormat:@"Step %i", m.stepNumber] : m.markerTitle;
     cell.detailTextLabel.text = m.markerText;
   }
@@ -142,14 +153,16 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+  [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if(indexPath.section==1) {
+    CGSize s = [((Marker *)[video.markers objectAtIndex:indexPath.row]).markerText sizeWithFont:[UIFont systemFontOfSize:15.0]
+                                                                             constrainedToSize:CGSizeMake(tableView.frame.size.width-40, MAXFLOAT)];
+    return 44.0+s.height;
+  }
+  else return 44.0;
 }
 
 

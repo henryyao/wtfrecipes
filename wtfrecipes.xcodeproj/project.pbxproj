@@ -39,6 +39,7 @@
 		BA628F2311A5D31F00FEA93C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA628F2211A5D31F00FEA93C /* QuartzCore.framework */; };
 		BA6290C811A5EF6E00FEA93C /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6290C711A5EF6E00FEA93C /* IconDownloader.m */; };
 		BA6291C011A5FD7E00FEA93C /* zomg_shiny.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6291BF11A5FD7E00FEA93C /* zomg_shiny.png */; };
+		BA6291CE11A5FF4D00FEA93C /* MarkerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6291CD11A5FF4D00FEA93C /* MarkerCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,8 @@
 		BA6290C611A5EF6E00FEA93C /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		BA6290C711A5EF6E00FEA93C /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		BA6291BF11A5FD7E00FEA93C /* zomg_shiny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zomg_shiny.png; sourceTree = "<group>"; };
+		BA6291CC11A5FF4D00FEA93C /* MarkerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerCell.h; sourceTree = "<group>"; };
+		BA6291CD11A5FF4D00FEA93C /* MarkerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				BA628CE011A5B5F200FEA93C /* RecipeDetailViewController.h */,
 				BA628CE111A5B5F200FEA93C /* RecipeDetailViewController.m */,
 				BA628CE211A5B5F200FEA93C /* RecipeDetailViewController.xib */,
+				BA6291CC11A5FF4D00FEA93C /* MarkerCell.h */,
+				BA6291CD11A5FF4D00FEA93C /* MarkerCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				BA628D5D11A5BAC600FEA93C /* VideoParser.m in Sources */,
 				BA628DF711A5C27500FEA93C /* Marker.m in Sources */,
 				BA6290C811A5EF6E00FEA93C /* IconDownloader.m in Sources */,
+				BA6291CE11A5FF4D00FEA93C /* MarkerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
