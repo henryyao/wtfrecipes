@@ -52,6 +52,9 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [self.tableView reloadData];
+}
 
 
 #pragma mark -
@@ -88,7 +91,7 @@
     if (cell == nil) 
       cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     cell.textLabel.text = [video.ingredients objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor colorWithRed:0.35 green:0.20 blue:0.12 alpha:1.0];
+    cell.textLabel.textColor = [UIColor colorWithRed:0.30 green:0.22 blue:0.18 alpha:1.0];
     cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.93 alpha:1.0];
   }
   else {

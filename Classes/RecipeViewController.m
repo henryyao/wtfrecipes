@@ -16,21 +16,20 @@ const int MAX_PAGE = 31;
 
 
 @implementation RecipeViewController
-@synthesize food, payload, thumbnailBg, thumbnailView, payloadSpinner, currentVideo, videos, videoParser, videosParser, iconDownloader, detailViewController, toolbar, fuckThatButton, loadingView, ohSweetButton, page;
+@synthesize food, payload, thumbnailBg, thumbnailView, currentVideo, videos, videoParser, videosParser, iconDownloader, detailViewController, toolbar, loadingView, ohSweetButton, page;
 
 - (void)viewDidLoad {
   CALayer *thumbnailBgLayer = [self.thumbnailBg layer];
   thumbnailBgLayer.masksToBounds = YES;
-  thumbnailBgLayer.cornerRadius = 9.0;
+  thumbnailBgLayer.cornerRadius = 15.0;
   CALayer *thumbnailViewLayer = [self.thumbnailView layer];
   thumbnailViewLayer.masksToBounds = YES;
-  thumbnailViewLayer.cornerRadius = 9.0;
+  thumbnailViewLayer.cornerRadius = 15.0;
   CALayer *ohSweetButtonLayer = [self.ohSweetButton layer];
   ohSweetButtonLayer.masksToBounds = YES;
-  ohSweetButtonLayer.cornerRadius = 8.0;
+  ohSweetButtonLayer.cornerRadius = 14.0;
   ohSweetButtonLayer.borderWidth = 1.0;
   ohSweetButtonLayer.borderColor = [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.25] CGColor];
-  payloadSpinner.hidden = YES;
   [super viewDidLoad];
   [self loadMoar];
 }
@@ -90,10 +89,14 @@ const int MAX_PAGE = 31;
     [videos removeObjectAtIndex:0];
     thumbnailView.image = nil;
     payload.text = @"";
-    payloadSpinner.hidden = NO;
     if(([self.currentVideo.videoTitle rangeOfString:@"Quick Tips"].location != 0) &&
        ([self.currentVideo.videoTitle rangeOfString:@"How Do You How"].location != 0)) {
+      food.alpha = 0;
       food.text = currentVideo.videoTitle;
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:0.3];
+      food.alpha = 1.0;
+      [UIView commitAnimations];
       iconDownloader.video = currentVideo;
       [self loadDetailsForCurrentVideoAndPresent:NO];
       [iconDownloader cancelDownload];
@@ -166,8 +169,12 @@ const int MAX_PAGE = 31;
 - (void)videoParser:(VideoParser *)parser didParse:(Video *)video {
   loadingView.hidden = YES;
   self.currentVideo = video;
-  payloadSpinner.hidden = YES;
+  payload.alpha = 0;
   payload.text = [NSString stringWithFormat:@"%i Ingredients, %i Steps", [video.ingredients count], video.totalSteps];
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.3];
+  payload.alpha = 1.0;
+  [UIView commitAnimations];
   detailViewController.tableView.contentOffset = CGPointZero;
   [detailViewController.tableView reloadData];
   if(shouldPresent) [self presentDetailViewController];
