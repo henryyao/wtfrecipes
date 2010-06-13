@@ -11,7 +11,7 @@
 
 @implementation Marker
 
-@dynamic markerTitle, markerText, stepNumber, markerType, position;
+@dynamic markerTitle, markerText, stepNumber, markerType, thumbnailURL, timemarker, position;
 
 - (void)setMarkerType:(NSString *)t {
   if(self.markerType!=nil) [markerType release], markerType=nil;

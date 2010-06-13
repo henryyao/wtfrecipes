@@ -12,7 +12,7 @@
 
 @implementation Video
 
-@dynamic videoTitle, videoId, markers, ingredients, totalSteps, thumbnailURL;
+@dynamic videoTitle, videoId, videoDescription, videoType, markers, ingredients, totalSteps, easySteps, thumbnailURL;
 
 - (NSArray *)sortedMarkers {
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];

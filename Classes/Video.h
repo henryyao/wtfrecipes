@@ -13,9 +13,12 @@
 @interface Video : NSManagedObject 
 
 @property (nonatomic, retain) NSString *videoTitle;
+@property (nonatomic, retain) NSString *videoDescription;
 @property (nonatomic, retain) NSString *videoId;
+@property (nonatomic, retain) NSString *videoType;
 @property (nonatomic, retain) NSSet *markers;
 @property (nonatomic, retain) NSSet *ingredients;
+@property (nonatomic) BOOL easySteps;
 @property (nonatomic) int totalSteps;
 @property (nonatomic, retain) NSString *thumbnailURL;
 

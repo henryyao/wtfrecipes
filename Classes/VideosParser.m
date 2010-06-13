@@ -24,7 +24,11 @@
   
   [video setVideoId:[Utils stringValueFromElement:videoData named:@"id"]];
   [video setVideoTitle:[Utils stringValueFromElement:videoData named:@"title"]];
+  [video setVideoDescription:[Utils stringValueFromElement:videoData named:@"description"]];
+  [video setVideoType:[Utils stringValueFromElement:videoData named:@"type"]];
   [video setThumbnailURL:[Utils stringValueFromElement:videoData named:@"thumbnail-url"]];
+  [video setValue:[NSNumber numberWithBool:[[Utils stringValueFromElement:videoData named:@"easy-steps"] isEqualToString:@"true"]] forKey:@"easySteps"];
+  //video.easySteps = [[Utils stringValueFromElement:videoData named:@"easy-steps"] isEqualToString:@"true"];
 
   return video;
 }

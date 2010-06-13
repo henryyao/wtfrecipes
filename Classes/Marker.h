@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSString *markerType;
 @property (nonatomic, retain) NSString *markerTitle;
 @property (nonatomic, retain) NSString *markerText;
+@property (nonatomic, retain) NSString *thumbnailURL;
+@property (nonatomic, retain) NSNumber *timemarker;
 @property (nonatomic, retain) NSNumber *position;
 @property (nonatomic) int stepNumber;
 

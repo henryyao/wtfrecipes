@@ -29,13 +29,14 @@
 
 - (Marker *)parseMarker:(CXMLElement *)markerData {
   // parse and create a Marker object
-  //Marker *marker = [[[Marker alloc] init] autorelease];
   Marker *marker = [[[Marker alloc] initWithEntity:self.markerEntityDescription insertIntoManagedObjectContext:self.insertionContext] autorelease];
   
   marker.markerTitle = [Utils stringValueFromElement:markerData named:@"title"];
   marker.markerType = [Utils stringValueFromElement:markerData named:@"type"];
   marker.markerText = [Utils stringValueFromElement:markerData named:@"textile-text"];
+  marker.thumbnailURL = [Utils stringValueFromElement:markerData named:@"thumbnail-url"];
   marker.position = [Utils numberValueFromElement:markerData named:@"position"];
+  marker.timemarker = [Utils numberValueFromElement:markerData named:@"timemarker"];
   
   //NSLog(@"marker: %@, %@, %@", marker.markerTitle, marker.markerType, marker.markerText);
   
