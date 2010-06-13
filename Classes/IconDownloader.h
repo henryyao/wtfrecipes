@@ -51,20 +51,18 @@
  */
 
 // lightly modified
-@class Video;
-
 @protocol IconDownloaderDelegate;
 
 @interface IconDownloader : NSObject
 {
-    Video *video;
+    NSString *iconURL;
     id <IconDownloaderDelegate> delegate;
     
     NSMutableData *activeDownload;
     NSURLConnection *imageConnection;
 }
 
-@property (nonatomic, retain) Video *video;
+@property (nonatomic, retain) NSString *iconURL;
 @property (nonatomic, assign) id <IconDownloaderDelegate> delegate;
 
 @property (nonatomic, retain) NSMutableData *activeDownload;
@@ -77,6 +75,6 @@
 
 @protocol IconDownloaderDelegate 
 
-- (void)videoThumbnailDidLoad:(Video *)video;
+- (void)iconDidLoad:(UIImage *)image;
 
 @end

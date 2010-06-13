@@ -12,7 +12,7 @@
 
 
 @implementation VideosParser
-@synthesize delegate, parsedVideos;
+@synthesize delegate, parsedVideos, insertionContext;
 
 - (void)parseVideos:(NSURL *)url {
   NSLog(@"parseVideos: %@", url);
@@ -20,12 +20,11 @@
 }
 
 - (Video *)parseVideo:(CXMLElement *)videoData {
-  // parse and create a Video object
-  Video *video = [[[Video alloc] init] autorelease];
+  Video *video = [[[Video alloc] initWithEntity:self.videoEntityDescription insertIntoManagedObjectContext:self.insertionContext] autorelease];
   
-  video.videoTitle = [Utils stringValueFromElement:videoData named:@"title"];
-  video.videoId = [Utils stringValueFromElement:videoData named:@"id"];
-  video.thumbnailURL = [Utils stringValueFromElement:videoData named:@"thumbnail-url"];
+  [video setVideoId:[Utils stringValueFromElement:videoData named:@"id"]];
+  [video setVideoTitle:[Utils stringValueFromElement:videoData named:@"title"]];
+  [video setThumbnailURL:[Utils stringValueFromElement:videoData named:@"thumbnail-url"]];
 
   return video;
 }
@@ -35,6 +34,12 @@
   [super dealloc];
 }
 
+- (NSEntityDescription *)videoEntityDescription {
+  if (videoEntityDescription == nil) {
+    videoEntityDescription = [[NSEntityDescription entityForName:@"Video" inManagedObjectContext:self.insertionContext] retain];
+  }
+  return videoEntityDescription;
+}
 
 #pragma mark NSURLConnection Delegate methods
 // Forward errors to the delegate.

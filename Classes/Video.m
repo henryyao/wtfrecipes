@@ -7,23 +7,25 @@
 //
 
 #import "Video.h"
+#import "Marker.h"
 
 
 @implementation Video
 
-@synthesize videoTitle, videoId, markers, ingredients, totalSteps, thumbnail, thumbnailURL;
+@dynamic videoTitle, videoId, markers, ingredients, totalSteps, thumbnailURL;
 
-- (id)init {
-  self.markers = [NSMutableArray array];
-  self.ingredients = [NSMutableArray array];
-  
-  return self;
-}
-
-- (void)dealloc {
-  [markers release];
-  [ingredients release];
-  [super dealloc];
-}
+//- (id)init {  
+//  return self;
+//}
+//
+//- (void)dealloc {
+//  [videoTitle release];
+//  [videoId release];
+//  [markers release];
+//  [ingredients release];
+//  [thumbnail release];
+//  [thumbnailURL release];
+//  [super dealloc];
+//}
 
 @end

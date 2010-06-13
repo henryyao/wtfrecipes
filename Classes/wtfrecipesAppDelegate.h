@@ -12,10 +12,20 @@
 @interface wtfrecipesAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;
   RecipeViewController *recipeViewController;
+
+  NSManagedObjectContext *managedObjectContext;
+  NSPersistentStoreCoordinator *persistentStoreCoordinator;
+  NSString *persistentStorePath;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet RecipeViewController *recipeViewController;
+
+// Properties for the Core Data stack.
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain, readonly) NSString *persistentStorePath;
+
 
 @end
 

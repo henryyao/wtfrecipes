@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Marker : NSObject {
+@interface Marker : NSManagedObject {
   NSString *markerType;
-  NSString *markerTitle;
-  NSString *markerText;
-  int stepNumber;
 }
 
 @property (nonatomic, retain) NSString *markerType;

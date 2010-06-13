@@ -16,7 +16,7 @@ const int MAX_PAGE = 31;
 
 
 @implementation RecipeViewController
-@synthesize food, payload, thumbnailBg, thumbnailView, currentVideo, videos, videoParser, videosParser, iconDownloader, detailViewController, toolbar, loadingView, ohSweetButton, page;
+@synthesize food, payload, thumbnailBg, thumbnailView, currentVideo, videos, videoParser, videosParser, iconDownloader, detailViewController, toolbar, loadingView, ohSweetButton, managedObjectContext, page;
 
 - (void)viewDidLoad {
   CALayer *thumbnailBgLayer = [self.thumbnailBg layer];
@@ -54,9 +54,11 @@ const int MAX_PAGE = 31;
 
 
 - (void)dealloc {
+  [currentVideo release];
   [videos release];
   [videoParser release];
   [videosParser release];
+  [iconDownloader release];
   [super dealloc];
 }
 
@@ -70,10 +72,12 @@ const int MAX_PAGE = 31;
   if(videoParser==nil) {
     self.videoParser = [[VideoParser alloc] init];
     videoParser.delegate = self;
+    videoParser.insertionContext = managedObjectContext;
   }
   if(videosParser==nil) {
     self.videosParser = [[VideosParser alloc] init];
     videosParser.delegate = self;
+    videosParser.insertionContext = managedObjectContext;
   }
   if(iconDownloader==nil) {
     self.iconDownloader = [[IconDownloader alloc] init];
@@ -97,7 +101,7 @@ const int MAX_PAGE = 31;
       [UIView setAnimationDuration:0.3];
       food.alpha = 1.0;
       [UIView commitAnimations];
-      iconDownloader.video = currentVideo;
+      iconDownloader.iconURL = currentVideo.thumbnailURL;
       [self loadDetailsForCurrentVideoAndPresent:NO];
       [iconDownloader cancelDownload];
       [iconDownloader startDownload];
@@ -170,7 +174,7 @@ const int MAX_PAGE = 31;
   loadingView.hidden = YES;
   self.currentVideo = video;
   payload.alpha = 0;
-  payload.text = [NSString stringWithFormat:@"%i Ingredients, %i Steps", [video.ingredients count], video.totalSteps];
+  payload.text = [NSString stringWithFormat:@"%i Ingredients, %i Steps", [video.ingredients count], [[video valueForKey:@"totalSteps"] intValue]];
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:0.3];
   payload.alpha = 1.0;
@@ -181,9 +185,9 @@ const int MAX_PAGE = 31;
 }
 
 #pragma mark IconDownloaderDelegate methods
-- (void)videoThumbnailDidLoad:(Video *)video {
+- (void)iconDidLoad:(UIImage *)image {
   self.thumbnailView.alpha = 0;
-  self.thumbnailView.image = video.thumbnail;
+  self.thumbnailView.image = image;
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:0.5];
   self.thumbnailView.alpha = 1.0;

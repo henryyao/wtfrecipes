@@ -53,27 +53,24 @@
 // lightly modified
 
 #import "IconDownloader.h"
-#import "Video.h"
 
 @implementation IconDownloader
 
-@synthesize video;
 @synthesize delegate;
 @synthesize activeDownload;
 @synthesize imageConnection;
+@synthesize iconURL;
 
 #pragma mark
 
 - (void)dealloc
 {
-    [video release];
-    
-    [activeDownload release];
-    
-    [imageConnection cancel];
-    [imageConnection release];
-    
-    [super dealloc];
+  [activeDownload release];
+  
+  [imageConnection cancel];
+  [imageConnection release];
+  
+  [super dealloc];
 }
 
 - (void)startDownload
@@ -82,7 +79,7 @@
     // alloc+init and start an NSURLConnection; release on completion/failure
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:
                              [NSURLRequest requestWithURL:
-                              [NSURL URLWithString:video.thumbnailURL]] delegate:self];
+                              [NSURL URLWithString:iconURL]] delegate:self];
     self.imageConnection = conn;
     [conn release];
 }
@@ -127,16 +124,14 @@
   [image drawInRect:imageRect];
   UIGraphicsEndImageContext();
   
-  self.video.thumbnail = image;  
+  // call our delegate and tell it that our icon is ready for display
+  [delegate iconDidLoad:image];
   
   self.activeDownload = nil;
   [image release];
   
   // Release the connection now that it's finished
   self.imageConnection = nil;
-  
-  // call our delegate and tell it that our icon is ready for display
-  [delegate videoThumbnailDidLoad:video];
 }
 
 @end

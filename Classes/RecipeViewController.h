@@ -30,6 +30,9 @@ const int MAX_PAGE;
   UIToolbar *toolbar;
   UIView *loadingView;
   UIButton *ohSweetButton;
+
+  NSManagedObjectContext *managedObjectContext;
+
   int page;
   BOOL shouldPresent;
 }
@@ -47,6 +50,7 @@ const int MAX_PAGE;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
 @property (nonatomic, retain) IBOutlet UIButton *ohSweetButton;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) int page;
 
 - (IBAction)ohSweet:(id)sender;

@@ -24,10 +24,14 @@
 @interface VideoParser : XMLDownloader {
   id <VideoParserDelegate> delegate;
   Video *video;
+  NSManagedObjectContext *insertionContext;
+  NSEntityDescription *markerEntityDescription;
 }
 
 @property (nonatomic, assign) id <VideoParserDelegate> delegate;
 @property (nonatomic, retain) Video *video;
+@property (nonatomic, retain) NSManagedObjectContext *insertionContext;
+@property (nonatomic, retain, readonly) NSEntityDescription *markerEntityDescription;
 
 - (void)parseVideo:(NSURL *)url;
 - (void)cancel;
