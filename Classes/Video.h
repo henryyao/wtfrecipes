@@ -19,6 +19,8 @@
 @property (nonatomic) int totalSteps;
 @property (nonatomic, retain) NSString *thumbnailURL;
 
+- (NSArray *)sortedMarkers;
+- (NSArray *)sortedIngredients;
 @end
 
 @interface Video (CoreDataGeneratedAccessors)

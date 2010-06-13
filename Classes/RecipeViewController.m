@@ -115,6 +115,7 @@ const int MAX_PAGE = 31;
 - (void)showDetails {
   detailViewController.video = currentVideo;
   detailViewController.title = currentVideo.videoTitle;
+
   NSLog(@"%i, %i", [currentVideo.markers count], [currentVideo.ingredients count]);
   if(([currentVideo.markers count]==0) || ([currentVideo.ingredients count]==0)) {
     loadingView.hidden = NO;

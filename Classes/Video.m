@@ -14,18 +14,29 @@
 
 @dynamic videoTitle, videoId, markers, ingredients, totalSteps, thumbnailURL;
 
-//- (id)init {  
-//  return self;
-//}
-//
-//- (void)dealloc {
-//  [videoTitle release];
-//  [videoId release];
-//  [markers release];
-//  [ingredients release];
-//  [thumbnail release];
-//  [thumbnailURL release];
-//  [super dealloc];
-//}
+- (NSArray *)sortedMarkers {
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+	
+	NSMutableArray *m = [[[NSMutableArray alloc] initWithArray:[self.markers allObjects]] autorelease];
+	[m sortUsingDescriptors:sortDescriptors];
+  
+	[sortDescriptor release];
+	[sortDescriptors release];
+
+  return m;
+}
+- (NSArray *)sortedIngredients {
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+	
+	NSMutableArray *i = [[[NSMutableArray alloc] initWithArray:[self.ingredients allObjects]] autorelease];
+	[i sortUsingDescriptors:sortDescriptors];
+  
+	[sortDescriptor release];
+	[sortDescriptors release];
+  
+  return i;
+}
 
 @end

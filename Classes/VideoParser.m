@@ -35,8 +35,9 @@
   marker.markerTitle = [Utils stringValueFromElement:markerData named:@"title"];
   marker.markerType = [Utils stringValueFromElement:markerData named:@"type"];
   marker.markerText = [Utils stringValueFromElement:markerData named:@"textile-text"];
+  marker.position = [Utils numberValueFromElement:markerData named:@"position"];
   
-  NSLog(@"marker: %@, %@, %@", marker.markerTitle, marker.markerType, marker.markerText);
+  //NSLog(@"marker: %@, %@, %@", marker.markerTitle, marker.markerType, marker.markerText);
   
   return marker;
 }
@@ -63,10 +64,13 @@
   CXMLDocument *xmlDoc = [[CXMLDocument alloc] initWithData:buffer options:0 error:&xmlError];
   if(xmlError==nil) {
     NSArray *dataBlock = [xmlDoc nodesForXPath:@"//video/ingredients/ingredient" error:nil];
+    int displayOrder = 0;
     for(CXMLElement *data in dataBlock) {
       Ingredient *i = [[[Ingredient alloc] initWithEntity:[NSEntityDescription entityForName:@"Ingredient" inManagedObjectContext:self.insertionContext] insertIntoManagedObjectContext:self.insertionContext] autorelease];
+      i.displayOrder = [NSNumber numberWithInt:displayOrder];
       i.item = [[data stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
       [video addIngredientsObject:i];
+      displayOrder++;
     }
     int stepNumber = 1;
     dataBlock = [xmlDoc nodesForXPath:@"//video/markers/marker" error:nil];

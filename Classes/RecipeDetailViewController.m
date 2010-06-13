@@ -91,7 +91,7 @@
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
       cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    cell.textLabel.text = ((Ingredient *)[[video.ingredients allObjects] objectAtIndex:indexPath.row]).item;
+    cell.textLabel.text = ((Ingredient *)[[video sortedIngredients] objectAtIndex:indexPath.row]).item;
     cell.textLabel.textColor = [UIColor colorWithRed:0.30 green:0.22 blue:0.18 alpha:1.0];
     cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.93 alpha:1.0];
   }
@@ -100,7 +100,8 @@
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
       cell = [[[MarkerCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    Marker *m = (Marker *)[[video.markers allObjects] objectAtIndex:indexPath.row];
+    Marker *m = (Marker *)[[video sortedMarkers] objectAtIndex:indexPath.row];
+
     if([m.markerType isEqualToString:@"Warning"])
       cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.81 alpha:1.0];
     else if([m.markerType isEqualToString:@"Tip"])
@@ -115,7 +116,6 @@
     
   return cell;
 }
-
 
 //- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 //  return YES;
@@ -162,7 +162,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   if(indexPath.section==1) {
-    CGSize s = [((Marker *)[[video.markers allObjects] objectAtIndex:indexPath.row]).markerText sizeWithFont:[UIFont systemFontOfSize:15.0]
+    CGSize s = [((Marker *)[[video sortedMarkers] objectAtIndex:indexPath.row]).markerText sizeWithFont:[UIFont systemFontOfSize:15.0]
                                                                              constrainedToSize:CGSizeMake(tableView.frame.size.width-40, MAXFLOAT)];
     return 44.0+s.height;
   }

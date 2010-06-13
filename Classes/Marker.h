@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString *markerType;
 @property (nonatomic, retain) NSString *markerTitle;
 @property (nonatomic, retain) NSString *markerText;
+@property (nonatomic, retain) NSNumber *position;
 @property (nonatomic) int stepNumber;
 
 - (BOOL)isaStep;

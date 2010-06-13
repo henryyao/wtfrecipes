@@ -11,8 +11,7 @@
 
 @implementation Marker
 
-@dynamic markerTitle, markerText, stepNumber;
-@dynamic markerType;
+@dynamic markerTitle, markerText, stepNumber, markerType, position;
 
 - (void)setMarkerType:(NSString *)t {
   if(self.markerType!=nil) [markerType release], markerType=nil;
@@ -22,19 +21,9 @@
   }
 }
 
-//- (NSString *)markerType {
-//  return markerType;
-//}
-
 - (BOOL)isaStep {
   return [self.markerType isEqualToString:@"Step"];
 }
 
-//- (void)dealloc {
-//  [markerTitle release];
-//  [markerType release];
-//  [markerText release];
-//  [super dealloc];
-//}
 
 @end

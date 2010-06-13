@@ -27,6 +27,9 @@
 
 - (void)dealloc {
   [recipeViewController release];
+  [managedObjectContext release];
+  [persistentStoreCoordinator release];
+  [persistentStorePath release];
   [window release];
   [super dealloc];
 }

@@ -274,9 +274,9 @@
 				BA628C5E11A5AE4F00FEA93C /* Video.m */,
 				BA628DF511A5C27500FEA93C /* Marker.h */,
 				BA628DF611A5C27500FEA93C /* Marker.m */,
-				BAB675EF11ADEA2300AF359E /* VideoModel.xcdatamodel */,
 				BAB6780211ADFD7800AF359E /* Ingredient.h */,
 				BAB6780311ADFD7800AF359E /* Ingredient.m */,
+				BAB675EF11ADEA2300AF359E /* VideoModel.xcdatamodel */,
 			);
 			name = Data;
 			sourceTree = "<group>";
